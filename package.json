@@ -1,0 +1,28 @@
+{
+  "name": "comentarios",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "bootstrap-css-only": "^4.0.0",
+    "firebase": "^4.9.0",
+    "re-base": "^3.2.2",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-rebase": "^1.0.5",
+    "react-scripts": "1.1.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom --watchAll",
+    "coverage": "react-scripts test --env=jsdom --watchAll --coverage",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "babel-jest": "^22.1.0",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "jest-cli": "^20.0.4",
+    "react-addons-test-utils": "^15.6.2"
+  }
+}
