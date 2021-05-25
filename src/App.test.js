@@ -1,7 +1,7 @@
 import React from 'react'
 import Enzyme, { shallow /* quando quer validar se existe um componente */, 
-	             mount   /* quando preciso de uma interação com o componente que dependa do DOM (clique por ex) */, 
-	             render  /* quando quero ser mais fidedigno com a saída do HTML */} from 'enzyme'
+	               mount   /* quando preciso de uma interação com o componente que dependa do DOM (clique por ex) */, 
+	               render  /* quando quero ser mais fidedigno com a saída do HTML */} from 'enzyme'
 import App from './App'
 
 import ReactTestUtils from 'react-dom/test-utils'
@@ -9,6 +9,36 @@ import ReactTestUtils from 'react-dom/test-utils'
 import Adapter from 'enzyme-adapter-react-16'
 
 Enzyme.configure({ adapter: new Adapter()})
+
+//https://stackoverflow.com/questions/48450028/how-to-test-firebase-login-action-react-jest
+// Mock all the exports in the module.
+function mockFirebaseService() {
+	return new Promise(resolve => resolve(true));
+  }
+  
+  // Since "services/firebase" is a dependency on this file that we are testing,
+  // we need to mock the child dependency.
+  jest.mock('services/firebase', () => new Promise(resolve => resolve(true)));
+  
+  describe('login actions', () => {
+	let store;
+  
+	beforeEach(() => {
+	  store = mockStore({});
+	});
+  
+	it('signIn should call firebase', () => {
+	  const user = {
+		email: 'first.last@yum.com',
+		password: 'abd123'
+	  };
+  
+	  store.dispatch(signIn(user.email, user.password)).then(() => {
+		expect(mockFirebaseService).toHaveBeenCalled();
+	  });
+	});
+  });
+
 
 describe('<App />', () => {
   const base = { /* passa o "moc" da dependência */
